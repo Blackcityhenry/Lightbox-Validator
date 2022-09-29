@@ -85,8 +85,10 @@ export default {
   methods: {
     newLine(number) {
       console.log(number);
-      if (number !== undefined) {
+      if (number !== undefined && number >= 0) {
         this.currentIndex = number;
+      } else if (number !== undefined && number === -1){
+        //
       } else if (this.currentIndex < 2) {
         this.currentIndex++;
       }

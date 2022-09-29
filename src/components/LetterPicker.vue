@@ -16,10 +16,22 @@
       >&nbsp;</button>
     </div>
     <div class="letter-picker__tool">
-      <button @click="newLine">Next Row</button>
-      <button @click="backspace">Backspace</button>
-      <button @click="deleteRow">Delete Row</button>
-      <button @click="reset">Reset</button>
+      <button @click="newLine">
+        Next Row
+        <span>Enter</span>
+      </button>
+      <button @click="backspace">
+        Backspace
+        <span>Backspace</span>
+      </button>
+      <button @click="deleteRow">
+        Delete Row
+        <span>Delete</span>
+      </button>
+      <button @click="reset">
+        Reset
+        <span>Ecs</span>
+      </button>
     </div>
   </div>
 </template>
@@ -53,6 +65,7 @@ export default {
   },
   methods: {
     letterListener(e){
+      console.log(e.key)
       e.preventDefault();
       var key = e.key;
       if (/Enter/.test(key)){
@@ -61,6 +74,14 @@ export default {
         this.letterClicked(' ')
       } else if (/Backspace/.test(key)) {
         this.backspace();
+      } else if (/Delete/.test(key)) {
+        this.deleteRow();
+      } else if (/Escape/.test(key)) {
+        this.reset();
+      } else if (/ArrowDown/.test(key)) {
+        this.newLine();
+      } else if (/ArrowUp/.test(key)) {
+        this.newLine(this.currentIndex - 1);
       } else if (/^\w\b/.test(key)) {
         key = key.toUpperCase();
         if ( !this.checkCount(key) ){
@@ -87,7 +108,6 @@ export default {
           );
         });
       } else if (this.localModel[this.currentIndex].length < 8) {
-        // console.log("simple add");
         this.$set(
           this.localModel,
           this.currentIndex,
@@ -97,8 +117,8 @@ export default {
         console.error("max length!");
       }
     },
-    newLine() {
-      this.$emit("new-line");
+    newLine(number) {
+      this.$emit("new-line", number);
     },
     backspace() {
       this.$set(
@@ -148,6 +168,10 @@ export default {
   &[disabled] {
     opacity: 0.3;
   }
+
+  &:hover {
+    background-color: #ddd;
+  }
 }
 
 .letter-picker {
@@ -163,11 +187,28 @@ export default {
     button {
       border: none;
 
-      height: 40px;
+      height: 60px;
 
       display: inline-flex;
       justify-content: center;
       align-items: center;
+      flex-direction: column;
+      transition: .3s;
+      background-color: #eee;
+      cursor: pointer;
+
+      &:hover {
+        background-color: #ddd;
+      }
+
+      span {
+        font-size: 0.7em;
+        margin-top: .7em;
+        border: 1px solid #000;
+        padding: .15em .5em;
+        border-radius: 3px;
+        background-color: #ccc;
+      }
     }
   }
 }
