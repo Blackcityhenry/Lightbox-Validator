@@ -22,7 +22,7 @@ export default {
   },
   data() {
     return {
-      model: ["", "", ""],
+      model: ["ONLINE", "😎", "LIGHTBOX"],
       currentIndex: 0,
       letters: {
         A: 4,
