@@ -53,7 +53,7 @@ export default {
   },
   methods: {
     letterListener(e){
-      console.log(e)
+      e.preventDefault();
       var key = e.key;
       if (/Enter/.test(key)){
         this.newLine();
@@ -63,7 +63,9 @@ export default {
         this.backspace();
       } else if (/^\w\b/.test(key)) {
         key = key.toUpperCase();
-        this.letterClicked(key)
+        if ( !this.checkCount(key) ){
+          this.letterClicked(key)
+        }
       }
     },
     letterClicked(letter) {
@@ -85,7 +87,7 @@ export default {
           );
         });
       } else if (this.localModel[this.currentIndex].length < 8) {
-        console.log("simple add");
+        // console.log("simple add");
         this.$set(
           this.localModel,
           this.currentIndex,
