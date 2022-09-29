@@ -52,6 +52,20 @@ export default {
     },
   },
   methods: {
+    letterListener(e){
+      console.log(e)
+      var key = e.key;
+      if (/Enter/.test(key)){
+        this.newLine();
+      } else if (/\s/.test(key)) {
+        this.letterClicked(' ')
+      } else if (/Backspace/.test(key)) {
+        this.backspace();
+      } else if (/\w/.test(key)) {
+        key = key.toUpperCase();
+        this.letterClicked(key)
+      }
+    },
     letterClicked(letter) {
       if (
         this.localModel[this.currentIndex].length === 8 &&
@@ -104,6 +118,9 @@ export default {
       return used >= limit;
     },
   },
+  mounted(){
+    window.addEventListener('keyup', this.letterListener)
+  }
 };
 </script>
 
