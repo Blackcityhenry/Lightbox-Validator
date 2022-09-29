@@ -116,7 +116,7 @@ body {
   align-content: center;
   align-items: center;
   grid-gap: 30px;
-  max-width: 1125px;
+  max-width: 1090px;
   margin: auto;
   padding: 0 20px;
 
