@@ -7,18 +7,22 @@
       :currentIndex="currentIndex"
       @new-line="newLine"
     />
+
+    <ProjectInfo />
   </div>
 </template>
 
 <script>
 import LetterPicker from "@/components/LetterPicker";
 import LightBox from "@/components/LightBox";
+import ProjectInfo from "@/components/ProjectInfo";
 
 export default {
   name: "App",
   components: {
     LetterPicker,
     LightBox,
+    ProjectInfo
   },
   data() {
     return {
