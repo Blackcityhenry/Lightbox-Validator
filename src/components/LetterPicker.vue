@@ -142,6 +142,7 @@ export default {
   padding: 0;
   transition: .3s;
   cursor: pointer;
+  white-space: nowrap;
 
   &[disabled] {
     opacity: 0.3;
