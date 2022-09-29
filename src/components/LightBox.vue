@@ -63,6 +63,7 @@ export default {
     background: #fff;
 
     letter-spacing: 1.9rem;
+    white-space: nowrap;
 
     font-size: 2.75rem;
     font-family: "Barlow Condensed", monospace;
