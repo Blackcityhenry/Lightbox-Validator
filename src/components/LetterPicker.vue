@@ -61,7 +61,7 @@ export default {
         this.letterClicked(' ')
       } else if (/Backspace/.test(key)) {
         this.backspace();
-      } else if (/\w/.test(key)) {
+      } else if (/^\w\b/.test(key)) {
         key = key.toUpperCase();
         this.letterClicked(key)
       }
