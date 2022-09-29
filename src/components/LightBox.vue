@@ -48,6 +48,7 @@ export default {
   grid-gap: 10px;
   background: #ccc;
   height: calc(3 * 5rem + 4 * 10px);
+  width: calc(10px * 2 + 8 * 3rem);
 
   > div {
     cursor: pointer;

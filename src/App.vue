@@ -7,9 +7,6 @@
       :currentIndex="currentIndex"
       @new-line="newLine"
     />
-
-    Results: {{ model }} current: {{ currentIndex }} length:
-    {{ model[currentIndex].length }}
   </div>
 </template>
 
@@ -98,11 +95,38 @@ export default {
 };
 </script>
 
-<style>
+<style lang="scss">
 @import url("https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@300&display=swap");
 
+body {
+  margin: 0;
+  min-height: 100vh;
+  height: 100vh;
+  /* background-color: #C4A484; */
+}
+
+* {
+  box-sizing: border-box;
+}
+
 #app {
+  min-height: 100%;
   display: grid;
   grid-template-columns: calc(10px * 2 + 8 * 3rem) 1fr;
+  align-content: center;
+  align-items: center;
+  grid-gap: 30px;
+  max-width: 1125px;
+  margin: auto;
+  padding: 0 20px;
+
+  @media only screen and (max-width: 900px){
+    grid-template-columns: auto;
+    justify-items: center;
+    grid-template-rows: auto auto;
+    align-items: initial;
+    align-content: initial;
+    padding: 40px 20px;
+  }
 }
 </style>

@@ -10,6 +10,10 @@
       >
         {{ letter }}
       </button>
+      <button
+        class="card"
+        @click="letterClicked(' ')"
+      >&nbsp;</button>
     </div>
     <div class="letter-picker__tool">
       <button @click="newLine">Next Row</button>
@@ -17,8 +21,6 @@
       <button @click="deleteRow">Delete Row</button>
       <button @click="reset">Reset</button>
     </div>
-
-    {{ letterUsed }}
   </div>
 </template>
 
@@ -108,7 +110,7 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style lang="scss" scoped>
 .card {
-  background: transparent;
+  background: #fff;
   border: 1px solid #ccc;
   width: 3rem;
   height: 5rem;
@@ -121,6 +123,8 @@ export default {
   justify-content: center;
   align-items: center;
   padding: 0;
+  transition: .3s;
+  cursor: pointer;
 
   &[disabled] {
     opacity: 0.3;
