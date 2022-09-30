@@ -18,19 +18,19 @@
     <div class="letter-picker__tool">
       <button @click="newLine">
         Next Row
-        <span>Enter</span>
+        <span class="key">Enter</span>
       </button>
       <button @click="backspace">
         Backspace
-        <span>Backspace</span>
+        <span class="key">Backspace</span>
       </button>
       <button @click="deleteRow">
         Delete Row
-        <span>Delete</span>
+        <span class="key">Delete</span>
       </button>
       <button @click="reset">
         Reset
-        <span>Ecs</span>
+        <span class="key">Ecs</span>
       </button>
     </div>
   </div>
@@ -147,7 +147,7 @@ export default {
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
-<style lang="scss" scoped>
+<style lang="scss">
 .card {
   background: #fff;
   color: #000;
@@ -175,6 +175,18 @@ export default {
   }
 }
 
+.key {
+  font-size: 0.7em;
+  margin-top: .7em;
+  border: 1px solid #000;
+  padding: .15em .5em;
+  border-radius: 3px;
+  background-color: #ccc;
+  transition: .5s;
+}
+</style>
+
+<style lang="scss" scoped>
 .letter-picker {
   &__table {
   }
@@ -200,15 +212,6 @@ export default {
 
       &:hover {
         background-color: #ddd;
-      }
-
-      span {
-        font-size: 0.7em;
-        margin-top: .7em;
-        border: 1px solid #000;
-        padding: .15em .5em;
-        border-radius: 3px;
-        background-color: #ccc;
       }
     }
   }

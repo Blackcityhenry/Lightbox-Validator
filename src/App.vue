@@ -8,6 +8,7 @@
       @new-line="newLine"
     />
 
+    <PageSetting />
     <ProjectInfo />
   </div>
 </template>
@@ -16,13 +17,15 @@
 import LetterPicker from "@/components/LetterPicker";
 import LightBox from "@/components/LightBox";
 import ProjectInfo from "@/components/ProjectInfo";
+import PageSetting from "@/components/PageSetting";
 
 export default {
   name: "App",
   components: {
     LetterPicker,
     LightBox,
-    ProjectInfo
+    ProjectInfo,
+    PageSetting
   },
   data() {
     return {
@@ -102,7 +105,7 @@ export default {
 </script>
 
 <style lang="scss">
-@import url("https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@300&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@300;400;500&display=swap");
 
 body {
   margin: 0;
