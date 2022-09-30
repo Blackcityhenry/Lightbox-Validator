@@ -187,7 +187,7 @@ export default {
 
     button {
       border: none;
-
+      color: #000;
       height: 60px;
 
       display: inline-flex;
