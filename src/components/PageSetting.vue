@@ -18,12 +18,12 @@
         </div>
 
         <div class="page-setting__section">
-          <button @click="setData(darkMode, false)">
+          <button @click="setData('darkMode', false)">
             <div class="card" :class="isActive(darkMode, false)">
               🌞
             </div>
           </button>
-          <button @click="setData(darkMode, true)">
+          <button @click="setData('darkMode', true)">
             <div class="card" :class="isActive(darkMode, true)">
               🌚
             </div>
