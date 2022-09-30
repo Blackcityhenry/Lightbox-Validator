@@ -96,7 +96,7 @@ export default {
         this.newLine(this.currentIndex - 1);
       } else if (/^\w\b/.test(key)) {
         key = key.toUpperCase();
-        if ( !this.checkCount(key) ){
+        if ( !this.checkCount(key) || !this.limitedLetter ){
           this.letterClicked(key)
         }
       }
