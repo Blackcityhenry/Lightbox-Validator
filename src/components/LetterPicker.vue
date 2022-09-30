@@ -1,12 +1,12 @@
 <template>
   <div class="letter-picker">
-    <div class="letter-picker__table">
+    <div class="letter-picker__table" v-if="!keyboardLayout">
       <button
         class="card"
         v-for="(count, letter) in letters"
         :key="letter"
         @click="letterClicked(letter)"
-        :disabled="checkCount(letter)"
+        :disabled="checkCount(letter) && limitedLetter"
       >
         {{ letter }}
       </button>
@@ -14,6 +14,17 @@
         class="card"
         @click="letterClicked(' ')"
       >&nbsp;</button>
+    </div>
+    <div class="letter-picker__table letter-picker__table--keyboard" v-else>
+      <button
+        class="card"
+        v-for="key in keyboard"
+        :key="'keyboard' + key"
+        @click="letterClicked(key)"
+        :disabled="checkCount(key) && limitedLetter"
+      >
+        {{ key }}
+      </button>
     </div>
     <div class="letter-picker__tool">
       <button @click="newLine">
@@ -39,10 +50,11 @@
 <script>
 export default {
   name: "LetterPicker",
-  props: ["letters", "currentIndex"],
+  props: ["letters", "currentIndex", "limitedLetter", 'keyboardLayout'],
   data() {
     return {
       localModel: ["", "", ""],
+      keyboard: ["!","@","&","#","?","'","€","£","♫","1","2","3","4","5","6","7","8","9","0","Q","W","E","R","T","Y","U","I","O","P","A","S","D","F","G","H","J","K","L","Z","X","C","V","B","N","M","🙂","😝","😂","👍"," ","♥️","🎈","🍾","😎","😍"]
     };
   },
   computed: {
@@ -189,6 +201,45 @@ export default {
 <style lang="scss" scoped>
 .letter-picker {
   &__table {
+
+    &--keyboard {
+      display: grid;
+      grid-template-columns: repeat(10, 3rem);
+      grid-template-rows: 5rem;
+      grid-gap: 0.5rem;
+      justify-content: center;
+
+      .card {
+        margin: 0;
+
+        &:nth-child(-n+9){
+          margin-left: 1.5rem;
+        }
+
+        &:nth-child(n+10){
+          grid-row-start: 2;
+        }
+
+        &:nth-child(n+20){
+          grid-row-start: 3;
+        }
+
+        &:nth-child(n+30){
+          grid-row-start: 4;
+          margin-left: 1.5rem;
+        }
+
+        &:nth-child(n+39){
+          margin-left: 4.5rem;
+          grid-row-start: 5;
+        }
+
+        &:nth-child(n+46){
+          grid-row-start: 6;
+          margin-left: 0;
+        }
+      }
+    }
   }
 
   &__tool {

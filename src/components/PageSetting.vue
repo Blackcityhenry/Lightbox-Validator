@@ -6,7 +6,7 @@
         </button>
       </div>
       <div class="page-setting__box" v-if="boxOpen">
-  
+
         <div class="page-setting__title">
           <span class="card">S</span>
           <span class="card">E</span>
@@ -16,20 +16,20 @@
           <span class="card">N</span>
           <span class="card">G</span>
         </div>
-  
+
         <div class="page-setting__section">
-          <button @click="setDarkMode(false)">
+          <button @click="setData(darkMode, false)">
             <div class="card" :class="isActive(darkMode, false)">
               🌞
             </div>
           </button>
-          <button @click="setDarkMode(true)">
+          <button @click="setData(darkMode, true)">
             <div class="card" :class="isActive(darkMode, true)">
               🌚
             </div>
           </button>
         </div>
-  
+
         <div class="page-setting__section">
           <label>
             <input type="radio" v-model="fontWeight" value="300" hidden>
@@ -44,14 +44,36 @@
             <span class="card" style="font-weight: 500" :class="isActive(fontWeight ,'500')">A</span>
           </label>
         </div>
-  
+
         <div class="page-setting__section">
-  
+          <button @click="setData('limitedLetter', true)">
+            <div class="card" :class="isActive(limitedLetter, true)">
+              🔒
+            </div>
+          </button>
+          <button @click="setData('limitedLetter', false)">
+            <div class="card" :class="isActive(limitedLetter, false)">
+              🔓
+            </div>
+          </button>
+        </div>
+
+        <div class="page-setting__section">
+          <button @click="setData('keyboardLayout', false)">
+            <div class="card" :class="isActive(keyboardLayout, false)">
+              🔠
+            </div>
+          </button>
+          <button @click="setData('keyboardLayout', true)">
+            <div class="card" :class="isActive(keyboardLayout, true)">
+              ⌨️
+            </div>
+          </button>
         </div>
       </div>
     </div>
   </template>
-  
+
   <script>
   export default {
     name: 'PageSetting',
@@ -59,6 +81,8 @@
       return ({
         darkMode: false,
         fontWeight: '300',
+        limitedLetter: true,
+        keyboardLayout: false,
         boxOpen: false,
       })
     },
@@ -75,14 +99,20 @@
         document.body.classList.remove('fw-400')
         document.body.classList.remove('fw-500')
         document.body.classList.add('fw-'+fw)
+      },
+      limitedLetter(boolean){
+        this.$emit('property-updated', 'limitedLetter', boolean)
+      },
+      keyboardLayout(boolean){
+        this.$emit('property-updated', 'keyboardLayout', boolean)
       }
     },
     methods: {
       toggleBoxOpen(){
           this.boxOpen = !this.boxOpen;
         },
-      setDarkMode(boolean){
-        this.darkMode = boolean;
+      setData(property, boolean){
+        this[property] = boolean;
       },
       isActive(compare1, compare2){
         return compare1 === compare2 && 'active';
@@ -90,30 +120,34 @@
     },
     mounted(){
       this.darkMode = window.matchMedia("(prefers-color-scheme: dark)").matches;
-  
+
       document.body.classList.add('fw-300')
     }
   }
   </script>
-  
+
   <style lang="scss">
   body {
     transition: background-color .5s;
   }
   .dark-mode {
     background-color: #444;
-  
+
     .key {
       background-color: #000;
       color: #fff;
     }
+
+    .page-setting__box {
+      background-color: #444;
+    }
   }
-  
+
   .fw-300 {
     .card {
       font-weight: 300;
     }
-  
+
     .light-box {
       > div {
         font-weight: 300;
@@ -124,7 +158,7 @@
     .card {
       font-weight: 400;
     }
-  
+
     .light-box {
       > div {
         font-weight: 400;
@@ -135,25 +169,25 @@
     .card {
       font-weight: 500;
     }
-  
+
     .light-box {
       > div {
         font-weight: 500;
       }
     }
   }
-  
+
   </style>
-  
-  <style lang="scss" scoped>
+
+  <style lang="scss">
   .page-setting {
     position: fixed;
     top: 30px;
     right: 30px;
-  
+
     &__btn {
       text-align: right;
-  
+
       button {
         background-color: transparent;
         padding: 0;
@@ -161,43 +195,44 @@
         width: 20px;
         height: 20px;
         cursor: pointer;
-  
+
         svg {
           width: 100%;
           height: 100%;
-  
+
           path {
             fill: #aaa;
           }
         }
       }
-  
+
     }
-  
+
     &__box {
-      width: 600px;
-      max-width: calc(100vh - 20px);
+      max-width: 600px;
+      width: calc(100vw - 60px);
       border: 1px solid #ccc;
       padding: 40px;
-  
+      background-color: #fff;
+
       .card {
         cursor: normal;
         transition: background-color .5s;
-  
+
         &:hover {
           background-color: #fff;
         }
-  
+
         &.active {
           background-color: #ffc;
         }
       }
     }
-  
+
     &__title {
       margin-bottom: 40px;
     }
-  
+
     &__section {
       button {
         background: transparent;
@@ -207,4 +242,3 @@
     }
   }
   </style>
-  

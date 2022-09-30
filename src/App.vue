@@ -4,11 +4,13 @@
     <LetterPicker
       v-model="model"
       :letters="letters"
+      :limitedLetter="limitedLetter"
+      :keyboardLayout="keyboardLayout"
       :currentIndex="currentIndex"
       @new-line="newLine"
     />
 
-    <PageSetting />
+    <PageSetting @property-updated="receieveEmit" />
     <ProjectInfo />
   </div>
 </template>
@@ -31,6 +33,8 @@ export default {
     return {
       model: ["ONLINE", "😎", "LIGHTBOX"],
       currentIndex: 0,
+      limitedLetter: true,
+      keyboardLayout: false,
       letters: {
         A: 4,
         B: 2,
@@ -91,7 +95,7 @@ export default {
   },
   methods: {
     newLine(number) {
-      console.log(number);
+      // console.log(number);
       if (number !== undefined && number >= 0) {
         this.currentIndex = number;
       } else if (number !== undefined && number === -1){
@@ -100,6 +104,9 @@ export default {
         this.currentIndex++;
       }
     },
+    receieveEmit(property, value){
+      this[property] = value;
+    }
   },
 };
 </script>
