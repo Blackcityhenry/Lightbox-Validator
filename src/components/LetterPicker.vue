@@ -150,6 +150,7 @@ export default {
 <style lang="scss" scoped>
 .card {
   background: #fff;
+  color: #000;
   border: 1px solid #ccc;
   width: 3rem;
   height: 5rem;
