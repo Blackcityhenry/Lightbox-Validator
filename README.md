@@ -1,5 +1,9 @@
-# lightbox-validator
+# Online LightBox
 https://online-lightbox.pages.dev/
+
+## Known Issue
+1. emoji are not counting length correctly due to ASCII
+2. Special character keyboard not supported
 
 ## Project setup
 ```
