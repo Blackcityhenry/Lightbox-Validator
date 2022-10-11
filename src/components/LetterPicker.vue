@@ -41,7 +41,7 @@
       </button>
       <button @click="reset">
         Reset
-        <span class="key">Ecs</span>
+        <span class="key">Esc</span>
       </button>
     </div>
   </div>
